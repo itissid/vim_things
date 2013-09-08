@@ -8,6 +8,8 @@ setlocal nu
 " Load rope plugin
 let g:pymode_rope = 1
 
+let g:pymode_virtualenv = 1
+
 " Map keys for autocompletion
 let g:pymode_rope_autocomplete_map = '<C-Space>'
 
