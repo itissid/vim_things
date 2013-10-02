@@ -1,10 +1,5 @@
-setlocal tabstop=4
-setlocal softtabstop=4
-setlocal shiftwidth=4
-setlocal textwidth=80
-setlocal smarttab
-setlocal noexpandtab
 setlocal nu
+set hlsearch
 " Load rope plugin
 let g:pymode_rope = 1
 
@@ -12,6 +7,8 @@ let g:pymode_virtualenv = 1
 
 " Map keys for autocompletion
 let g:pymode_rope_autocomplete_map = '<C-Space>'
+
+let g:pymode_rope_extended_complete=1
 
 " Auto create and open ropeproject
 let g:pymode_rope_auto_project = 1
@@ -45,3 +42,7 @@ let g:pymode_rope_guess_project = 1
 let g:pymode_rope_goto_def_newwin = ""
 
 let g:pymode_rope_always_show_complete_menu = 0
+
+" Ignore specific warnings
+let g:pymode_lint_ignore = "W191,E251,E128,E126,E127"
+
