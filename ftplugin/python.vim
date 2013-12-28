@@ -46,3 +46,4 @@ let g:pymode_rope_always_show_complete_menu = 0
 " Ignore specific warnings
 let g:pymode_lint_ignore = "W191,E251,E128,E126,E127"
 
+set noexpandtab
