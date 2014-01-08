@@ -1,3 +1,6 @@
 [submodule "bundle/python-mode"]
 	path = bundle/python-mode
 	url = https://github.com/klen/python-mode.git
+[submodule "bundle/vim-autocorrect"]
+	path = bundle/vim-autocorrect
+	url = https://github.com/panozzaj/vim-autocorrect.git

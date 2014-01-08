@@ -1,5 +1,6 @@
 setlocal nu
 set hlsearch
+autocmd BufRead,BufNewFile *.py setlocal spell
 " Load rope plugin
 let g:pymode_rope = 1
 
