@@ -11,11 +11,15 @@ nnoremap <Tab> <Esc>
 vnoremap <Tab> <Esc>gV
 onoremap <Tab> <Esc>
 inoremap <Tab> <Esc>`^
+let mapleader=","
 inoremap <Leader><Tab> <Tab>
-cmap <Tab> <C-c>
+" The mapping of tab to sec costs me jump navigation of <C-i>, reclaim it
+nnoremap <c-u> <c-i>
 
 " Fast saving
 nmap <leader>w :w!<cr>
+" Fast quitting
+nmap <leader>q :q!<cr>
 
 " Highlight search results
 set hlsearch
@@ -65,7 +69,7 @@ map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
 
 " When you press <leader>r you can search and replace the selected text
-vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
+vnoremap <silent> <leader>v :call VisualSelection('gq')<CR>
 
 " Do :help cope if you are unsure what cope is. It's super useful!
 "
@@ -92,6 +96,16 @@ function! CmdLine(str)
     unmenu Foo
 endfunction
 
+function! Get_visual_selection()
+  " Why is this not a built-in Vim script function?!
+  let [lnum1, col1] = getpos("'<")[1:2]
+  let [lnum2, col2] = getpos("'>")[1:2]
+  let lines = getline(lnum1, lnum2)
+  let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
+  let lines[0] = lines[0][col1 - 1:]
+  return join(lines, "\n")
+endfunction
+
 function! VisualSelection(direction) range
     let l:saved_reg = @"
     execute "normal! vgvy"
@@ -103,8 +117,8 @@ function! VisualSelection(direction) range
         execute "normal ?" . l:pattern . "^M"
     elseif a:direction == 'gv'
         call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
-    elseif a:direction == 'replace'
-        call CmdLine("%s" . '/'. l:pattern . '/')
+    elseif a:direction == 'gq'
+        call CmdLine("%s" . '/'. Get_visual_selection() . '/')
     elseif a:direction == 'f'
         execute "normal /" . l:pattern . "^M"
     endif
@@ -121,3 +135,12 @@ function! HasPaste()
     return ''
 endfunction
 
+
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+" Spell check for the git commit file
+autocmd FileType gitcommit setlocal spell
+autocmd BufWritePre * :%s/\s\+$//e
