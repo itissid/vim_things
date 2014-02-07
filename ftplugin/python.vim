@@ -48,3 +48,6 @@ let g:pymode_rope_always_show_complete_menu = 0
 let g:pymode_lint_ignore = "W191,E251,E128,E126,E127"
 
 set noexpandtab
+
+" Also add in indent folding for the win
+set foldmethod=indent

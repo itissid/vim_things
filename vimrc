@@ -87,6 +87,10 @@ map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
 
+" Code folding made easy
+nnoremap <space> za
+vnoremap <space> zc
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -98,6 +102,7 @@ endfunction
 
 function! Get_visual_selection()
   " Why is this not a built-in Vim script function?!
+  " Sid: Got it to work for me
   let [lnum1, col1] = getpos("'<")[1:2]
   let [lnum2, col2] = getpos("'>")[1:2]
   let lines = getline(lnum1, lnum2)
@@ -144,3 +149,10 @@ noremap <Right> <NOP>
 " Spell check for the git commit file
 autocmd FileType gitcommit setlocal spell
 autocmd BufWritePre * :%s/\s\+$//e
+
+" This will open a new split after you navigate from a 'tag' or
+" it will goto the existing buffer for the tag, if one exists.
+set switchbuf=useopen,usetab,split
+
+" Art Cat! Welcome
+echo ">^.^< says welcome!"
