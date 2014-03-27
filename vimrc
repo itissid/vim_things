@@ -11,8 +11,10 @@ nnoremap <Tab> <Esc>
 vnoremap <Tab> <Esc>gV
 onoremap <Tab> <Esc>
 inoremap <Tab> <Esc>`^
+let g:SuperTabMappingForward = '<c-space>'
+let g:SuperTabMappingBackward= '<s-c-space>'
 let mapleader=","
-inoremap <Leader><Tab> <Tab>
+inoremap <Leader>t <Tab>
 " The mapping of tab to sec costs me jump navigation of <C-i>, reclaim it
 nnoremap <c-u> <c-i>
 
@@ -152,7 +154,59 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 " This will open a new split after you navigate from a 'tag' or
 " it will goto the existing buffer for the tag, if one exists.
+" TODO(Sid): Still need to complete this.
 set switchbuf=useopen,usetab,split
+function! AutoImportAutoImport()
+    echom 'Fill me in some how...'
+endfunction
+" inoremap <expr> <space>  pumvisible() ? AutoImportAutoImport() : '\<space>'
+
+let g:vimwiki_list=[{'path': '~/Dropbox/vimwiki/'}, {'path_html': '~/Dropbox/vimwiki_html/'}]
+
+" Some Fugitive bindings.
+
+"This helps you move up and down the tree.
+autocmd User fugitive
+  \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+  \   nnoremap <buffer> .. :edit %:h<CR> |
+  \ endif
+" Dont select the first completion utesm insert the lingest common test of all
+" matches and the menu will comeup even if there's only one match.
+set completeopt=longest,menuone
+
+" Neo cache compl with jedi/rope
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+imap neosnippet#expandable() ? "(neosnippet_expand_or_jump)" : pumvisible() ? "" : ""
+smap neosnippet#expandable() ? "(neosnippet_expand_or_jump)" :
+let g:neocomplcache_force_overwrite_completefunc = 1
+if !exists('g:neocomplcache_omni_functions')
+  let g:neocomplcache_omni_functions = {}
+endif
+if !exists('g:neocomplcache_force_omni_patterns')
+    let g:neocomplcache_force_omni_patterns = {}
+endif
+let g:neocomplcache_force_overwrite_completefunc = 1
+let g:neocomplcache_force_omni_patterns['python'] = '[^. t].w*'
+set ofu=syntaxcomplete#Complete
+au FileType python set omnifunc=pythoncomplete#Complete
+au FileType python let b:did_ftplugin = 1
+
+" Neocache Snippets
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
+imap <expr><leader>t neosnippet#expandable_or_jumpable() ?
+			\ "\<Plug>(neosnippet_expand_or_jump)"
+			\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><leader>t neosnippet#expandable_or_jumpable() ?
+			\ "\<Plug>(neosnippet_expand_or_jump)"
+			\: "\<TAB>"
+" For snippet_complete marker.
+if has('conceal')
+	set conceallevel=2 concealcursor=i
+endif
 
 " Art Cat! Welcome
 echo ">^.^< says welcome!"
