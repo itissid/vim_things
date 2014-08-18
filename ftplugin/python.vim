@@ -68,7 +68,7 @@ let g:jedi#popup_on_dot = 0
 
 let g:jedi#popup_select_first = 0
 
-set noexpandtab
+set expandtab
 
 " Also add in indent folding for the win
 set foldmethod=indent
