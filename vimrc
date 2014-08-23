@@ -208,5 +208,26 @@ if has('conceal')
 	set conceallevel=2 concealcursor=i
 endif
 
+" A long time coming... I think I should just get used to this more
+" and let the tab key alone
+" Mapping of Tab to escape
+onoremap jk <Esc>
+inoremap jk <Esc>`^
+inoremap <Esc> <nop>
+
+" Lint python on the fly using pymode.
+" When you bogie out of insert mode it does this for you.
+let g:pymode_lint_on_fly = 1
+
+" For SQLFormatting
+let g:sqlutil_keyword_case = '\U'
+let g:sqlutil_align_comma=1
+
+" For vim powerline.
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+" Since we are using spaces every where we should make this happen
+set expandtab
 " Art Cat! Welcome
 echo ">^.^< says welcome!"
