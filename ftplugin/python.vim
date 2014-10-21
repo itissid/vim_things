@@ -47,6 +47,11 @@ let g:pymode_rope_always_show_complete_menu = 0
 
 " Ignore specific warnings
 let g:pymode_lint_ignore = "W191,E251,E128,E126,E127"
+" Make sure certain lint messages are on.
+let g:pymode_lint_on_fly = 1
+let g:pymode_lint_on_write = 1
+let g:pymode_lint_unmodified = 1
+let g:pymode_lint_message = 1
 
 " Options for jedi
 let g:jedi#auto_initialization = 0
