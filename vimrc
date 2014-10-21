@@ -3,14 +3,14 @@ filetype off
 call pathogen#infect()
 call pathogen#helptags()
 
+set runtimepath+=~/.vim/bundle/vundle
+call vundle#rc()
+Bundle 'SirVer/ultisnips'
+Bundle 'honza/vim-snippets'
+
 filetype plugin indent on
 syntax on
 
-" Mapping of Tab to escape
-nnoremap <Tab> <Esc>
-vnoremap <Tab> <Esc>gV
-onoremap <Tab> <Esc>
-inoremap <Tab> <Esc>`^
 let g:SuperTabMappingForward = '<c-space>'
 let g:SuperTabMappingBackward= '<s-c-space>'
 let mapleader=","
@@ -193,24 +193,16 @@ set ofu=syntaxcomplete#Complete
 au FileType python set omnifunc=pythoncomplete#Complete
 au FileType python let b:did_ftplugin = 1
 
-" Neocache Snippets
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
-imap <expr><leader>t neosnippet#expandable_or_jumpable() ?
-			\ "\<Plug>(neosnippet_expand_or_jump)"
-			\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><leader>t neosnippet#expandable_or_jumpable() ?
-			\ "\<Plug>(neosnippet_expand_or_jump)"
-			\: "\<TAB>"
-" For snippet_complete marker.
-if has('conceal')
-	set conceallevel=2 concealcursor=i
-endif
+" So am going to replace my new neocomplcache snippets with
+
+let g:neosnippet#snippets_directory="~/.vim/bundle/vim-snippets"
+let g:UltiSnipsExpandTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-l>"
+let g:UltiSnipsJumpBackwardTrigger="<c-h>"
+
 
 " A long time coming... I think I should just get used to this more
 " and let the tab key alone
-" Mapping of Tab to escape
 onoremap jk <Esc>
 inoremap jk <Esc>`^
 inoremap <Esc> <nop>
@@ -229,5 +221,9 @@ python powerline_setup()
 python del powerline_setup
 " Since we are using spaces every where we should make this happen
 set expandtab
+
+" Mouse for quick select!
+set mouse=a
 " Art Cat! Welcome
 echo ">^.^< says welcome!"
+
