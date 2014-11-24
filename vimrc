@@ -3,10 +3,20 @@ filetype off
 call pathogen#infect()
 call pathogen#helptags()
 
+" Vundle related things
 set runtimepath+=~/.vim/bundle/vundle
-call vundle#rc()
-Bundle 'SirVer/ultisnips'
-Bundle 'honza/vim-snippets'
+call vundle#begin()
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'marijnh/tern_for_vim'
+Plugin 'klen/python-mode'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Shougo/neosnippet'
+Plugin 'tpope/vim-surround'
+Plugin 'gmarik/Vundle.vim'
+call vundle#end()            " required
 
 filetype plugin indent on
 syntax on

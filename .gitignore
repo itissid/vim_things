@@ -1,3 +1,7 @@
 .netrwhist
 .VimballRecord
 tmp/*
+
+# Let Vundle manage things, we don't need to checkin
+# things to git!
+bundle/*
