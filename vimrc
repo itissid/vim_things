@@ -14,6 +14,7 @@ Plugin 'marijnh/tern_for_vim'
 Plugin 'klen/python-mode'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/neocomplete'
 Plugin 'tpope/vim-surround'
 Plugin 'gmarik/Vundle.vim'
 call vundle#end()            " required
@@ -232,8 +233,24 @@ python del powerline_setup
 " Since we are using spaces every where we should make this happen
 set expandtab
 
+" Nerdtree auto on vim start
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+let NERDTreeIgnore=['\.pyc', '__pycache__', '\~$']
+
+" Neocomplcache customizations
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
+
+
 " Mouse for quick select!
 set mouse=a
-" Art Cat! Welcome
 echo ">^.^< says welcome!"
 

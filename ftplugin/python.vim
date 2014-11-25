@@ -77,3 +77,8 @@ set expandtab
 
 " Also add in indent folding for the win
 set foldmethod=indent
+
+let g:pymode_rope_regenerate_on_write = 0
+
+" Allow for better doc strings
+let g:ultisnips_python_style="sphinx"
