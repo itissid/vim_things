@@ -218,9 +218,6 @@ onoremap jk <Esc>
 inoremap jk <Esc>`^
 inoremap <Esc> <nop>
 
-" Lint python on the fly using pymode.
-" When you bogie out of insert mode it does this for you.
-let g:pymode_lint_on_fly = 1
 
 " For SQLFormatting
 let g:sqlutil_keyword_case = '\U'
@@ -249,8 +246,8 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
 
-
 " Mouse for quick select!
 set mouse=a
-echo ">^.^< says welcome!"
+" The art cat welcome
+echo ">^.^< cat says welcome!"
 

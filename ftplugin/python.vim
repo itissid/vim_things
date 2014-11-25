@@ -6,8 +6,7 @@ let g:pymode_rope = 1
 
 let g:pymode_virtualenv = 1
 
-" Map keys for autocompletion
-let g:pymode_rope_completion=1
+" Map keys for autocompletion let g:pymode_rope_completion=1
 let g:pymode_rope_autocomplete_map = '<C-Space>'
 
 let g:pymode_rope_extended_complete=1
@@ -53,6 +52,11 @@ let g:pymode_lint_on_write = 1
 let g:pymode_lint_unmodified = 1
 let g:pymode_lint_message = 1
 
+" Enable the options for setting textwidth = 99
+" and setting colormode to draw a red line down the 100 column mark
+let g:pymode_options_max_line_length = 99
+let g:pymode_options_colorcolumn = 1
+
 " Options for jedi
 let g:jedi#auto_initialization = 0
 "There are also some VIM options (like completeopt and key defaults) which are automatically initialized, but you can change all of them:
@@ -82,3 +86,8 @@ let g:pymode_rope_regenerate_on_write = 0
 
 " Allow for better doc strings
 let g:ultisnips_python_style="sphinx"
+
+"
+if g:pymode_rope
+    au BufWriteCmd *.py write || :PymodeLint
+endif
