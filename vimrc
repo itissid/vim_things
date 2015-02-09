@@ -17,6 +17,7 @@ Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neocomplete'
 Plugin 'tpope/vim-surround'
 Plugin 'gmarik/Vundle.vim'
+Plugin 'tell-k/vim-autopep8'
 call vundle#end()            " required
 
 filetype plugin indent on

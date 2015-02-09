@@ -52,10 +52,25 @@ let g:pymode_lint_on_write = 1
 let g:pymode_lint_unmodified = 1
 let g:pymode_lint_message = 1
 
+" PymodeLintAuto is completely broken switch to using
+" https://github.com/tell-k/vim-autopep8
+" TODO(Sid): Remove this plugin once PymodeLintAuto is fixed
+let g:autopep8_ignore = g:pymode_lint_ignore
+
+let g:autopep8_pep8_passes=100
+let g:autopep8_max_line_length=g:pymode_options_max_line_length
+let g:autopep8_aggressive=0
+
+nnoremap <leader>l :call Autopep8()<CR>
+
+
 " Enable the options for setting textwidth = 99
 " and setting colormode to draw a red line down the 100 column mark
 let g:pymode_options_max_line_length = 99
 let g:pymode_options_colorcolumn = 1
+let g:pymode_lint_options_pep8 = {'max_line_length': g:pymode_options_max_line_length}
+let g:pymode_lint_options_pylint = {'max-line-length': g:pymode_options_max_line_length}
+
 
 " Options for jedi
 let g:jedi#auto_initialization = 0
@@ -88,6 +103,6 @@ let g:pymode_rope_regenerate_on_write = 0
 let g:ultisnips_python_style="sphinx"
 
 "
-if g:pymode_rope
-    au BufWriteCmd *.py write || :PymodeLint
-endif
+augroup python_grp
+    au BufWritePost *.py :%s/\s\+$//e
+augroup END
