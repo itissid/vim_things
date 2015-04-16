@@ -1,0 +1,12 @@
+[user]
+	name = Sidharth Gupta
+	email = itissid@gmail.com
+[alias]
+        co = checkout
+        st = status
+        diffc = diff --cached
+        br = branch
+        rpull = pull --rebase
+        logx = log --graph --all --decorate --oneline
+[core]
+	editor = /usr/bin/vim
