@@ -7,17 +7,14 @@ call pathogen#helptags()
 set runtimepath+=~/.vim/bundle/vundle
 call vundle#begin()
 Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'marijnh/tern_for_vim'
-# Plugin 'klen/python-mode'
 Plugin 'scrooloose/nerdtree'
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/neocomplete'
 Plugin 'tpope/vim-surround'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tell-k/vim-autopep8'
+Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 call vundle#end()            " required
 
 filetype plugin indent on
@@ -187,27 +184,27 @@ autocmd User fugitive
 set completeopt=longest,menuone
 
 " Neo cache compl with jedi/rope
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-imap neosnippet#expandable() ? "(neosnippet_expand_or_jump)" : pumvisible() ? "" : ""
-smap neosnippet#expandable() ? "(neosnippet_expand_or_jump)" :
-let g:neocomplcache_force_overwrite_completefunc = 1
-if !exists('g:neocomplcache_omni_functions')
-  let g:neocomplcache_omni_functions = {}
-endif
-if !exists('g:neocomplcache_force_omni_patterns')
-    let g:neocomplcache_force_omni_patterns = {}
-endif
-let g:neocomplcache_force_overwrite_completefunc = 1
-let g:neocomplcache_force_omni_patterns['python'] = '[^. t].w*'
+" let g:neocomplcache_enable_at_startup = 1
+" let g:neocomplete#enable_at_startup = 1
+" let g:neocomplete#enable_smart_case = 1
+" imap neosnippet#expandable() ? "(neosnippet_expand_or_jump)" : pumvisible() ? "" : ""
+" smap neosnippet#expandable() ? "(neosnippet_expand_or_jump)" :
+" let g:neocomplcache_force_overwrite_completefunc = 1
+" if !exists('g:neocomplcache_omni_functions')
+"   let g:neocomplcache_omni_functions = {}
+" endif
+" if !exists('g:neocomplcache_force_omni_patterns')
+"     let g:neocomplcache_force_omni_patterns = {}
+" endif
+" let g:neocomplcache_force_overwrite_completefunc = 1
+" let g:neocomplcache_force_omni_patterns['python'] = '[^. t].w*'
 set ofu=syntaxcomplete#Complete
 au FileType python set omnifunc=pythoncomplete#Complete
 au FileType python let b:did_ftplugin = 1
 
 " So am going to replace my new neocomplcache snippets with
 
-let g:neosnippet#snippets_directory="~/.vim/bundle/vim-snippets"
+" let g:neosnippet#snippets_directory="~/.vim/bundle/vim-snippets"
 let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-l>"
 let g:UltiSnipsJumpBackwardTrigger="<c-h>"
@@ -224,10 +221,10 @@ inoremap <Esc> <nop>
 let g:sqlutil_keyword_case = '\U'
 let g:sqlutil_align_comma=1
 
-" For vim powerline.
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
+" For vim powerline. Need to install this more out of the box
+" python from powerline.vim import setup as powerline_setup
+" python powerline_setup()
+" python del powerline_setup
 " Since we are using spaces every where we should make this happen
 set expandtab
 
@@ -242,13 +239,14 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 
 " <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
+" inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><C-y>  neocomplete#close_popup()
+" inoremap <expr><C-e>  neocomplete#cancel_popup()
 
 " Mouse for quick select!
 set mouse=a
 " The art cat welcome
 echo ">^.^< cat says welcome!"
 
+set runtimepath^=~/.vim/bundle/ctrlp.vim
