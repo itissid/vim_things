@@ -214,7 +214,10 @@ let g:UltiSnipsJumpBackwardTrigger="<c-h>"
 " and let the tab key alone
 onoremap jk <Esc>
 inoremap jk <Esc>`^
-inoremap <Esc> <nop>
+" Note to self: seems like the escape key is not that bad of an idea
+" I seem to be able to reach it easily and also changing the defaults is
+" not as bad as it seems!
+" inoremap <Esc> <nop>
 
 
 " For SQLFormatting
