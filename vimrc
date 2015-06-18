@@ -152,14 +152,14 @@ function! HasPaste()
 endfunction
 
 
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
+" noremap <Up> <NOP>
+" noremap <Down> <NOP>
+" noremap <Left> <NOP>
+" noremap <Right> <NOP>
 
 " Spell check for the git commit file
 autocmd FileType gitcommit setlocal spell
-autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre *.py :%s/\s\+$//e
 
 " This will open a new split after you navigate from a 'tag' or
 " it will goto the existing buffer for the tag, if one exists.
@@ -214,6 +214,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-h>"
 " and let the tab key alone
 onoremap jk <Esc>
 inoremap jk <Esc>`^
+
 " Note to self: seems like the escape key is not that bad of an idea
 " I seem to be able to reach it easily and also changing the defaults is
 " not as bad as it seems!
