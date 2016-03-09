@@ -15,6 +15,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tell-k/vim-autopep8'
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'kien/ctrlp.vim'
 call vundle#end()            " required
 
 filetype plugin indent on
