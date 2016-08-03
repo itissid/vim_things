@@ -213,8 +213,8 @@ let g:UltiSnipsJumpBackwardTrigger="<c-h>"
 
 " A long time coming... I think I should just get used to this more
 " and let the tab key alone
-onoremap jk <Esc>
-inoremap jk <Esc>`^
+"onoremap jk <Esc>
+"inoremap jk <Esc>`^
 
 " Note to self: seems like the escape key is not that bad of an idea
 " I seem to be able to reach it easily and also changing the defaults is
@@ -255,3 +255,39 @@ set mouse=a
 echo ">^.^< cat says welcome!"
 
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+" leave insert mode quickly
+" This happened to me when escape would not get out of the insert mode quickly
+" enough
+if ! has('gui_running')
+  set ttimeoutlen=10
+  augroup FastEscape
+    autocmd!
+    au InsertEnter * set timeoutlen=0
+    au InsertLeave * set timeoutlen=1000
+  augroup END
+endif
+
+" Show trailing white spaces and remove em
+
+function ShowSpaces(...)
+  let @/='\v(\s+$)|( +\ze\t)'
+  let oldhlsearch=&hlsearch
+  if !a:0
+    let &hlsearch=!&hlsearch
+  else
+    let &hlsearch=a:1
+  end
+  return oldhlsearch
+endfunction
+
+function TrimSpaces() range
+  let oldhlsearch=ShowSpaces(1)
+  execute a:firstline.",".a:lastline."substitute ///gec"
+  let &hlsearch=oldhlsearch
+endfunction
+command -bar -nargs=? ShowSpaces call ShowSpaces(<args>)
+command -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
+nnoremap <leader>s :ShowSpaces 1<CR>
+nnoremap <leader>tw   m`:TrimSpaces<CR>``
+vnoremap <leader>t   :TrimSpaces<CR>
