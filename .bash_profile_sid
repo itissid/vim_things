@@ -12,4 +12,5 @@ export EDITOR=vim
 set -o vi
 # useful for retaining prompt color when screen starts
 export force_color_prompt=yes
+export GRADLE_USER_HOME=/cache/gradle 
 

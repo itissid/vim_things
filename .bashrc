@@ -115,17 +115,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
-export HISTSIZE=100000                   # big big history
-export HISTFILESIZE=100000               # big big history
-shopt -s histappend                      # append to history, don't overwrite it
 
-# Save and reload the history after each command finishes
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-export EDITOR=vim
-set -o vi
-# useful for retaining prompt color when screen starts
-export force_color_prompt=yes
-export GRADLE_USER_HOME=/cache/gradle 
-
+source  ~/.bash_profile_sid
 
