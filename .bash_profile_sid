@@ -6,6 +6,7 @@ shopt -s histappend                      # append to history, don't overwrite it
 mkdir -p ~/.log/
 export PROMPT_COMMAND='if [ "$(id -u)" -ne 0 ]; then echo "$(date "+%Y-%m-%d.%H:%M:%S") $(pwd) $(history 1)" >> ~/.logs/bash-history-$(date "+%Y-%m-%d").log; fi'
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+test -f ~/.git-completion.bash && . $_
 
 # Save and reload the history after each command finishes
 export EDITOR=vim
@@ -13,4 +14,3 @@ set -o vi
 # useful for retaining prompt color when screen starts
 export force_color_prompt=yes
 export GRADLE_USER_HOME=/cache/gradle 
-
