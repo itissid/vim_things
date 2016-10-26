@@ -15,3 +15,9 @@ set -o vi
 export force_color_prompt=yes
 export GRADLE_USER_HOME=/cache/gradle 
 complete -W "$(echo $(grep '^ssh ' .bash_history | sort -u | sed 's/^ssh //'))" ssh
+export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/
+# For pyenv
+export PATH="/home/sid/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+export PS1="\A:\w\n>> "

@@ -306,3 +306,6 @@ command -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
 nnoremap <leader>s :ShowSpaces 1<CR>
 nnoremap <leader>tw   m`:TrimSpaces<CR>``
 vnoremap <leader>t   :TrimSpaces<CR>
+" Copied this scheme as it was the most pleasant coding experience
+" https://raw.githubusercontent.com/mbbill/vim-seattle/master/colors/seattle.vim
+colorscheme seattle
