@@ -58,7 +58,7 @@ let g:pymode_lint_message = 1
 let g:autopep8_ignore = g:pymode_lint_ignore
 
 let g:autopep8_pep8_passes=100
-let g:autopep8_max_line_length=g:pymode_options_max_line_length
+" let g:autopep8_max_line_length=g:pymode_options_max_line_length
 let g:autopep8_aggressive=0
 
 nnoremap <leader>l :call Autopep8()<CR>
@@ -68,8 +68,8 @@ nnoremap <leader>l :call Autopep8()<CR>
 " and setting colormode to draw a red line down the 100 column mark
 let g:pymode_options_max_line_length = 99
 let g:pymode_options_colorcolumn = 1
-let g:pymode_lint_options_pep8 = {'max_line_length': g:pymode_options_max_line_length}
-let g:pymode_lint_options_pylint = {'max-line-length': g:pymode_options_max_line_length}
+"let g:pymode_lint_options_pep8 = {'max_line_length': g:pymode_options_max_line_length}
+"let g:pymode_lint_options_pylint = {'max-line-length': g:pymode_options_max_line_length}
 
 
 " Options for jedi

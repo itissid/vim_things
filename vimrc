@@ -6,27 +6,30 @@ call pathogen#helptags()
 " Vundle related things
 set runtimepath+=~/.vim/bundle/vundle
 call vundle#begin()
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-repeat'
-Plugin 'marijnh/tern_for_vim'
+"Plugin 'tpope/vim-fugitive'
+"Plugin 'tpope/vim-unimpaired'
+"Plugin 'tpope/vim-repeat'
+"Plugin 'marijnh/tern_for_vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-surround'
+"Plugin 'tpope/vim-surround'
 Plugin 'gmarik/Vundle.vim'
-Plugin 'tell-k/vim-autopep8'
-Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'kien/ctrlp.vim'
+" Plugin 'tell-k/vim-autopep8'
+" Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+" Plugin 'kien/ctrlp.vim'
 " Clojure related plugin
 Plugin 'tpope/vim-fireplace' " Talks to nREPL to provide code evaluation in vim
 Plugin 'tpope/vim-salve' " Auto connect fireplace to nREPL(or auto start it w/ :Console)
 Plugin 'tpope/vim-dispatch' " Mainly for kicking off liengen asynchronusly by vim-salve, but generally to leverage the power of Vim's compiler plugins without being bound by synchronicity. Kick off builds and test suites using one of several asynchronous adapters (including tmux, screen, iTerm, Windows, and a headless mode), and when the job completes, errors will be loaded and parsed automatically.
-Plugin 'guns/vim-sexp' " Provide movements
-Plugin 'tpope/vim-sexp-mappings-for-regular-people' " Movements, slurp and barf. (Also look at the surround plugin that makes list editing much easier)
+Plugin 'kovisoft/paredit'
 Plugin 'guns/vim-clojure-static' "  Syntax stuff
 Plugin 'guns/vim-clojure-highlight' " Syntax stuff
-Plugin 'kien/rainbow_parentheses.vim'
+" Plugin 'kien/rainbow_parentheses.vim'
 
-Plugin 'vim-scripts/vim-gradle'
+" Plugin 'vim-scripts/vim-gradle'
+
+Plugin 'jalvesaq/Nvim-R'
+Plugin 'ssayols/screenR'
+
 call vundle#end()            " required
 
 filetype plugin indent on
@@ -249,8 +252,8 @@ set softtabstop=4
 
 
 " Nerdtree auto on vim start
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 let NERDTreeIgnore=['\.pyc', '__pycache__', '\~$']
 
@@ -309,3 +312,11 @@ vnoremap <leader>t   :TrimSpaces<CR>
 " Copied this scheme as it was the most pleasant coding experience
 " https://raw.githubusercontent.com/mbbill/vim-seattle/master/colors/seattle.vim
 colorscheme seattle
+
+"For NVim-R pluginj
+let R_vsplit=1
+let R_in_buffer=0
+let R_applescript=0
+let R_tmux_split=0
+let R_term="xterm"
+let R_screen_split=1

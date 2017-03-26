@@ -17,7 +17,8 @@ export GRADLE_USER_HOME=/cache/gradle
 complete -W "$(echo $(grep '^ssh ' .bash_history | sort -u | sed 's/^ssh //'))" ssh
 export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/
 # For pyenv
-export PATH="/home/sid/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+#export PATH="/home/sid/.pyenv/bin:$PATH"
+#eval "$(pyenv init -)" || echo ""
+#eval "$(pyenv virtualenv-init -)" || echo ""
 export PS1="\A:\w\n>> "
+export PATH=~/bin:$PATH
