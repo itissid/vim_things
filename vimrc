@@ -8,14 +8,14 @@ set runtimepath+=~/.vim/bundle/vundle
 call vundle#begin()
 "Plugin 'tpope/vim-fugitive'
 "Plugin 'tpope/vim-unimpaired'
-"Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-repeat' " Revived for use outside clojure
 "Plugin 'marijnh/tern_for_vim'
 Plugin 'scrooloose/nerdtree'
-"Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-surround' " Revived for use outside clojure
 Plugin 'gmarik/Vundle.vim'
 " Plugin 'tell-k/vim-autopep8'
 " Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-" Plugin 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 " Clojure related plugin
 Plugin 'tpope/vim-fireplace' " Talks to nREPL to provide code evaluation in vim
 Plugin 'tpope/vim-salve' " Auto connect fireplace to nREPL(or auto start it w/ :Console)
@@ -29,6 +29,7 @@ Plugin 'guns/vim-clojure-highlight' " Syntax stuff
 
 Plugin 'jalvesaq/Nvim-R'
 Plugin 'ssayols/screenR'
+Plugin 'maverickg/stan'
 
 call vundle#end()            " required
 
@@ -80,7 +81,8 @@ set viminfo^=%
 set laststatus=2
 
 " Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+"set statusline=\ %{HasPaste()}%f%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+set statusline=\ %{HasPaste()}%f%m%r%h\ %w\ \ CWD:\ %{fnamemodify(getcwd(),':t')}%h\ \ \ Line:\ %(%l/%L%)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vimgrep searching and cope displaying
@@ -311,7 +313,7 @@ nnoremap <leader>tw   m`:TrimSpaces<CR>``
 vnoremap <leader>t   :TrimSpaces<CR>
 " Copied this scheme as it was the most pleasant coding experience
 " https://raw.githubusercontent.com/mbbill/vim-seattle/master/colors/seattle.vim
-colorscheme seattle
+" colorscheme seattle
 
 "For NVim-R pluginj
 let R_vsplit=1
@@ -320,3 +322,13 @@ let R_applescript=0
 let R_tmux_split=0
 let R_term="xterm"
 let R_screen_split=1
+
+  
+colorscheme 256_noir
+
+" Change highlighting of cursor line when entering/leaving Insert Mode
+" set cursorline
+highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=233 guifg=NONE guibg=#121212
+autocmd InsertEnter * highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=234 guifg=NONE guibg=#1c1c1c
+autocmd InsertLeave * highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=233 guifg=NONE guibg=#121212
+"

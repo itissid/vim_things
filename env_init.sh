@@ -24,3 +24,8 @@ else
 fi
 
 
+if [ -f ~/.tmux.conf]; then
+    echo "You have the tmux config. Linking it!"
+else
+    ln -s ~/.vim/.tmux.conf ~/.tmux.conf
+fi

@@ -14,7 +14,7 @@ set -o vi
 # useful for retaining prompt color when screen starts
 export force_color_prompt=yes
 export GRADLE_USER_HOME=/cache/gradle 
-complete -W "$(echo $(grep '^ssh ' .bash_history | sort -u | sed 's/^ssh //'))" ssh
+complete -W "$(echo $(grep '^ssh ' ~/.bash_history | sort -u | sed 's/^ssh //'))" ssh
 export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/
 # For pyenv
 #export PATH="/home/sid/.pyenv/bin:$PATH"
@@ -22,3 +22,20 @@ export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/
 #eval "$(pyenv virtualenv-init -)" || echo ""
 export PS1="\A:\w\n>> "
 export PATH=~/bin:$PATH
+
+# For java home in my mac osx
+export JAVA_HOME=$(/usr/libexec/java_home)
+# For maven
+if [ -f "/usr/local/apache-maven/bin/mvn" ]; then
+    export PATH=$PATH:/usr/local/apache-maven/bin/
+fi
+
+# Temporary
+export iview_2017=~/Dropbox/workspace/iview_2017/python/interactive-coding-challenges/
+
+# For solr
+export SOLR_HOME="${HOME}/opt/solr-4.7.0"
+
+# When starting vim in TMUX it does not remember the colorscheme. Fix this by forcing tmux to recognize 256 colors
+# https://stackoverflow.com/questions/10158508/lose-vim-colorscheme-in-tmux-mode
+alias tmux="TERM=screen-256color-bce tmux"
