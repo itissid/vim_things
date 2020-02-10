@@ -32,3 +32,9 @@ if [ -f ~/.tmux.conf ]; then
 else
     ln -s ~/.vim/.tmux.conf ~/.tmux.conf
 fi
+
+if [ -f ~/.gitconfig ]; then
+    echo "You have the git config. Linking it!"
+else
+    ln -s ~/.vim/.gitconfig ~/.gitconfig
+fi

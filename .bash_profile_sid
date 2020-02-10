@@ -40,3 +40,7 @@ export SOLR_HOME="${HOME}/opt/solr-4.7.0"
 # When starting vim in TMUX it does not remember the colorscheme. Fix this by forcing tmux to recognize 256 colors
 # https://stackoverflow.com/questions/10158508/lose-vim-colorscheme-in-tmux-mode
 alias tmux="TERM=screen-256color-bce tmux"
+
+# Integrating tmux shell
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash" || true
+

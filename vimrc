@@ -1,10 +1,11 @@
+set nocompatible
 filetype off
 
 call pathogen#infect()
 call pathogen#helptags()
 
 " Vundle related things
-set runtimepath+=~/.vim/bundle/vundle
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 "Plugin 'tpope/vim-fugitive'
 "Plugin 'tpope/vim-unimpaired'
