@@ -28,13 +28,19 @@ fi
 
 
 if [ -f ~/.tmux.conf ]; then
-    echo "You have the tmux config. Linking it!"
+    echo "You have the tmux config. Not changing anything."
 else
     ln -s ~/.vim/.tmux.conf ~/.tmux.conf
 fi
 
 if [ -f ~/.gitconfig ]; then
-    echo "You have the git config. Linking it!"
+    echo "You have the git config in the project. Leaving it alone"
 else
     ln -s ~/.vim/.gitconfig ~/.gitconfig
+fi
+
+if [ -f ~/.iterm2_shell_integration ]; then
+    echo "You have a iterm integration, leaving it alone"
+else
+    ln -s ~/.vim/.iterm2_shell_integration ~/.iterm2_shell_integration
 fi
