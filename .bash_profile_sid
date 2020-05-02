@@ -13,7 +13,7 @@ set -o vi
 if [ -f /usr/share/scm/scm-prompt.sh ]; then
   source /usr/share/scm/scm-prompt.sh
 fi
-#export PS1="\A:\w$(_scm_prompt [%s])\n>> "
+
 export PS1="\\e[1;33m\\A:\\w\\e[m\\n>> "
 export PATH=~/bin:$PATH
 
@@ -21,8 +21,6 @@ export PATH=~/bin:$PATH
 #export PATH="/home/sid/.pyenv/bin:$PATH"
 #eval "$(pyenv init -)" || echo ""
 #eval "$(pyenv virtualenv-init -)" || echo ""
-export PS1="\A:\w\n>> "
-export PATH=~/bin:$PATH
 
 # For java home in my mac osx
 export JAVA_HOME=$(/usr/libexec/java_home)
@@ -43,4 +41,12 @@ alias tmux="TERM=screen-256color-bce tmux"
 
 # Integrating tmux shell
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash" || true
+
+# Support for tmux to be able to warn upon command completion.
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+precmd() {  echo -e '\a'; }
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
