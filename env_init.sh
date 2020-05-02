@@ -44,3 +44,9 @@ if [ -f ~/.iterm2_shell_integration ]; then
 else
     ln -s ~/.vim/.iterm2_shell_integration ~/.iterm2_shell_integration
 fi
+
+# https://github.com/rcaloras/bash-preexec
+if [ -f ~/.bash-preexec.sh ]; then
+    echo "You have the the bash preexec config. Not changing anything."
+else
+    ln -s ~/.vim/.bash-preexec.sh ~/.bash-preexec.sh
