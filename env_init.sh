@@ -50,3 +50,16 @@ if [ -f ~/.bash-preexec.sh ]; then
     echo "You have the the bash preexec config. Not changing anything."
 else
     ln -s ~/.vim/.bash-preexec.sh ~/.bash-preexec.sh
+fi
+
+if [ -f ~/.zshrc ]; then
+    echo "You have the the zshrc . Not changing anything."
+else
+    ln -s ~/.vim/.zshrc ~/.zshrc
+fi
+
+if [ -f ~/.zshenv ]; then
+    echo "You have the the zshenv. Not changing anything."
+else
+    ln -s ~/.vim/.zshenv ~/.zshenv
+fi
