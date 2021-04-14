@@ -52,3 +52,11 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
+# Support for tmux to be able to warn upon command completion.
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+precmd() {  echo -e '\a'; }
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
