@@ -19,14 +19,25 @@ export PS1="[RC:%(?..[%?])]%F{yellow}%*: %~ %f
 >> "
 
 # Add logging to your history to make searching easier
-export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
+setopt HIST_IGNORE_ALL_DUPS # ZSH specific
+
 export HISTSIZE=100000                   # big big history
 export HISTFILESIZE=100000               # big big history
-setopt histappend                      # append to history, don't overwrite it
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt appendhistory
+setopt incappendhistory
+export HISTTIMEFORMAT="[%F %T] "
+setopt SHARE_HISTORY # ZSH specific settings
+
 mkdir -p ~/.logs
-export PROMPT_COMMAND='if [ "$(id -u)" -ne 0 ]; then echo "$(date "+%Y-%m-%d.%H:%M:%S") $(pwd) $(history 1)" >> ~/.logs/bash-history-$(date "+%Y-%m-%d").log; fi'
+export PROMPT_COMMAND='if [[ "$(id -u)" -ne 0 ]]; then echo "$(date +%Y-%m-%d.%H:%M:%S) $(pwd) $(history |tail -n 1)" >> ~/.logs/bash-history-$(date +%Y-%m-%d).log; fi'
 # After each command, append to the history file and reread it
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+export PROMPT_COMMAND="history -a; history -r; $PROMPT_COMMAND"
+# precmd() { 
+#     eval "$PROMPT_COMMAND"
+# }
+
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -71,7 +82,7 @@ fi
 
 # Support for tmux to be able to warn upon command completion.
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
-precmd() {  echo -e '\a'; }
+# precmd() {  echo -e '\a'; }
 
 # TODO: commented for zsh since I did not have time to fix it after porting it from bash
 #if [ "${color_prompt}" = yes ]; then
@@ -142,12 +153,16 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-# Support for tmux to be able to warn upon command completion.
-#[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
-#precmd() {  echo -e '\a'; }
-
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
 source ~/.zshenv
+bindkey '^R' history-incremental-search-backward
+
+# added by setup_fb4a.sh
+export ANDROID_SDK=/opt/android_sdk
+export ANDROID_NDK_REPOSITORY=/opt/android_ndk
+export ANDROID_HOME=${ANDROID_SDK}
+export PATH=${PATH}:${ANDROID_SDK}/emulator:${ANDROID_SDK}/tools:${ANDROID_SDK}/tools/bin:${ANDROID_SDK}/platform-tools
+

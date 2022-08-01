@@ -23,4 +23,10 @@ export SOLR_HOME="${HOME}/opt/solr-4.7.0"
 # Setting PATH for Python 3.6
 # The original version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
+PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
+PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
+PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
+PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+# PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH
 export PATH
