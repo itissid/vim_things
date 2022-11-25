@@ -24,7 +24,7 @@ if [ -f ~/.bashrc ]; then
     echo "~/.bashrc exists ensure it sources your ~/.bash_profile_sid"
 else
     echo "Creating a symlink to ~/.vim/.bashrc as none exists on the system" # ~/.vim/.bashrc is set up to source ~/bash_profile_sid.
-    # ln -s ~/.vim/bashrc ~/.bashrc
+    ln -s ~/.vim/.bashrc ~/.bashrc
 fi
 
 
