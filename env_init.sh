@@ -1,6 +1,7 @@
 #!/bin/bash
 set -x
 set -o
+[ -d ~/.vim ] || (mkdir ~/.vim)
 [ -f ~/.vimrc ] || (echo "Creating vimrc link" && ln -s ~/.vim/vimrc ~/.vimrc)
 
 # Setup:
@@ -10,7 +11,7 @@ set -o
 if [ -f ~/.bash_profile_sid ]; then
     echo "You have the bash_profile_sid!"
 else
-    ln -s ~/.vim/bash_profile_sid ~/.bash_profile
+    ln -s ~/.vim/.bash_profile_sid ~/.bash_profile
 fi
 
 if [ -f ~/.bash_profile ]; then

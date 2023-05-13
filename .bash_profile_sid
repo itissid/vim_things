@@ -24,8 +24,13 @@ export PATH=~/bin:$PATH
 #eval "$(pyenv virtualenv-init -)" || echo ""
 
 #(FIXME: Make his for mac only) For java home in my mac osx
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
-export PATH=$(/usr/libexec/java_home -v 1.8)/bin:$PATH
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    echo "TODO(Sid): Decide to set java home if you need to"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    # Mac OSX
+    export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+    export PATH=$(/usr/libexec/java_home -v 1.8)/bin:$PATH
+fi
 # For maven
 if [ -f "/usr/local/apache-maven/bin/mvn" ]; then
     export PATH=$PATH:/usr/local/apache-maven/bin/
