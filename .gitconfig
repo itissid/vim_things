@@ -8,5 +8,13 @@
         br = branch
         rpull = pull --rebase
         logx = log --graph --all --decorate --oneline
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 [core]
 	editor = /usr/bin/vim
+[color]
+	ui = auto
+[credential]
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
