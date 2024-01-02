@@ -30,3 +30,4 @@ PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
 PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
 # PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH
 export PATH
+. "$HOME/.cargo/env"
