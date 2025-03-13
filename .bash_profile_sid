@@ -133,3 +133,8 @@ unset __conda_setup
 #
 conda config --set auto_activate_base false
 
+# Created by `pipx` on 2025-01-29 04:39:11
+export PATH="$PATH:/Users/sid/.local/bin"
+export PATH=/opt/homebrew/lib/ruby/gems/3.4.0/bin/:$PATH
+export PATH=/opt/homebrew/lib/ruby/gems/3.4.0/gems/:$PATH
+export PATH="/Users/sid/development/flutter/bin:$PATH"
