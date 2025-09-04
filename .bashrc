@@ -122,3 +122,14 @@ PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
 export PATH
 . "$HOME/.cargo/env"
 
+
+source '/Users/sid/.bash_completions/myenv.sh'
+toclip() {
+  tmux load-buffer - && \
+  tmux save-buffer - | base64 | tr -d '\n' | printf '\033]52;c;%s\a' "$(cat)"
+}
+
+source '/Users/sid/.bash_completions/typer.sh'
+
+# FVM
+export PATH="/Users/sid/.fvm_flutter/bin:$PATH"

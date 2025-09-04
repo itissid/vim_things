@@ -8,7 +8,14 @@
         br = branch
         rpull = pull --rebase
         logx = log --graph --all --decorate --oneline
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+        # logxr = log --graph --all --decorate --oneline --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --decorate=short
+        logxx = log --graph --all --decorate --oneline --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --date=iso --decorate=short
+        # logxr = log --graph --all --decorate=full --oneline --pretty=format:'%Cred%h%Creset - %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'  --abbrev-commit --date=relative
+        #logxr = log --graph --all --decorate=full --oneline --pretty=format:'%Cred%h%Creset - %C(yellow)%d%Creset %s %Cgreen(%ad · %cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=format-local:'%d-%b'
+        logxr = log --graph --all --decorate=short --abbrev-commit --date=format-local:'%d-%b' --pretty=format:'%Cred%h%Creset - %C(yellow)%d%Creset %s %Cgreen(%ad · %cr)%Creset %C(bold blue)%an <%aE>%Creset'
+	pushf = "!f() { git push --force-with-lease origin \"$1\"; }; f"
+        pushff = push --force-with-lease --force-if-includes
+	rebase-onto = "!f() { git rebase --onto \"$1\" $(git merge-base HEAD \"$1\") --update-refs; }; f"
 [core]
 	editor = /usr/bin/vim
 [color]
@@ -18,3 +25,12 @@
 	helper = /usr/local/share/gcm-core/git-credential-manager
 [credential "https://dev.azure.com"]
 	useHttpPath = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[diff]
+        tool = vimdiff
+[fetch]
+	prune = true

@@ -26,6 +26,14 @@ Plugin 'guns/vim-clojure-static' "  Syntax stuff
 Plugin 'guns/vim-clojure-highlight' " Syntax stuff
 " Plugin 'kien/rainbow_parentheses.vim'
 
+call plug#begin()
+
+" List your plugins here
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+call plug#end()
+
 " Plugin 'vim-scripts/vim-gradle'
 
 Plugin 'jalvesaq/Nvim-R'
@@ -329,7 +337,9 @@ colorscheme 256_noir
 
 " Change highlighting of cursor line when entering/leaving Insert Mode
 " set cursorline
+set termguicolors
 highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=233 guifg=NONE guibg=#121212
 autocmd InsertEnter * highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=234 guifg=NONE guibg=#1c1c1c
 autocmd InsertLeave * highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=233 guifg=NONE guibg=#121212
-"
+
+set rtp+=/opt/homebrew/opt/fzf

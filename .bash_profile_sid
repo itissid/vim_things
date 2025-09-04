@@ -13,19 +13,19 @@ mkdir -p ~/.logs
 # The two commands below are correlated: The format for input and output needs to be the same.
 counter=0
 shopt -s nullglob
-for file in $(ls ~/.logs/bash-history-*.log); do
-    while IFS=' ' read -r timestamp filepath command; do
-        if [ "$counter" -lt "$HISTSIZE" ]; then
-            history -s "$command"
-            if [ "$?" -ne 0 ]; then
-                echo "[DEBUG]: bad command: $command in file: $file"
-            fi
-            ((counter++))
-        else
-            break 2
-        fi
-    done < "$file"
-done
+#for file in $(ls ~/.logs/bash-history-*.log); do
+#    while IFS=' ' read -r timestamp filepath command; do
+#        if [ "$counter" -lt "$HISTSIZE" ]; then
+#            history -s "$command"
+#            if [ "$?" -ne 0 ]; then
+#                echo "[DEBUG]: bad command: $command in file: $file"
+#            fi
+#            ((counter++))
+#        else
+#            break 2
+#        fi
+#    done < "$file"
+#done
 
 export PROMPT_COMMAND='exit_status=$? && if [ "$(id -u)" -ne 0 ]; then
     last_command=$(history 1 | sed "s/^[ ]*[0-9]*[ ]*//")
@@ -105,10 +105,10 @@ export PATH=$HOME/development/flutter:$PATH
 export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
 export PATH="/opt/homebrew/opt/mozjpeg/bin:$PATH"
 
-if command -v pyenv 1>/dev/null 2>&1; then
-  echo "Initializing pyenv"
-  eval "$(pyenv init -)"
-fi
+#if command -v pyenv 1>/dev/null 2>&1; then
+#  echo "Initializing pyenv"
+#  eval "$(pyenv init -)"
+#fi
 
 # Use lessy to color code a yaml file piped to less.
 alias lessy='pygmentize -l yaml -f console256 -O style=monokai | less -R'
@@ -133,8 +133,27 @@ unset __conda_setup
 #
 conda config --set auto_activate_base false
 
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# Try use regex in shell: Standardization of Regex(Jan 2025)
+export LESS="-R"
+
 # Created by `pipx` on 2025-01-29 04:39:11
 export PATH="$PATH:/Users/sid/.local/bin"
 export PATH=/opt/homebrew/lib/ruby/gems/3.4.0/bin/:$PATH
 export PATH=/opt/homebrew/lib/ruby/gems/3.4.0/gems/:$PATH
 export PATH="/Users/sid/development/flutter/bin:$PATH"
+alias prompt_poetry='poetry -C /Users/sid/workspace/myenv/ run python -m myenv --os mac --tag poetry'
+
+alias treepy='tree -I "*pyc" -I __pycache__'
+alias treec='tree -I pgdata/ -I "*[.]pyc" -I "*[.]png" -I  "*[.]md" -I "__pycache__"'
+
+# Bash completion
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[ -f /Users/sid/.dart-cli-completion/bash-config.bash ] && . /Users/sid/.dart-cli-completion/bash-config.bash || true
+## [/Completion]
+
