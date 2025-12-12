@@ -1,172 +1,175 @@
-# ~/.zshrc: executed by zsh(1) for interactive shells only
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+source ~/antigen.zsh
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-# If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
 
-# useful for retaining prompt color when screen starts
-export force_color_prompt=yes
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time Oh My Zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="robbyrussell"
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+
+antigen use oh-my-zsh
+
+antigen bundle jeffreytse/zsh-vi-mode
+antigen bundle zsh-users/zsh-history-substring-search
+antigen bundle colorize
+antigen bundle gh
+antigen bundle fzf
+
+# Load syntax highlight plugin
+antigen theme robbyrussell
+
+# Tell Antigen you're done
+antigen apply
+
+# User configuration
+# https://github.com/zsh-users/zsh-history-substring-search?tab=readme-ov-file#usage
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='nvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch $(uname -m)"
+
+# Set personal aliases, overriding those provided by Oh My Zsh libs,
+# plugins, and themes. Aliases can be placed here, though Oh My Zsh
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+
+# mtouch: create parent dirs (if needed) then touch file(s)
+mtouch() {
+  for f in "$@"; do
+    [[ "$f" == */* ]] && mkdir -p -- "${f%/*}"
+    : >| "$f"            # create/truncate even if 'noclobber' is set
+  done
+}
 set -o vi
-if [ -f /usr/share/scm/scm-prompt.sh ]; then
-  source /usr/share/scm/scm-prompt.sh
-fi
 
-export PS1="[RC:%(?..[%?])]%F{yellow}%*: %~ %f
->> "
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Add logging to your history to make searching easier
-setopt HIST_IGNORE_ALL_DUPS # ZSH specific
+# bun completions
+[ -s "/home/dev/.bun/_bun" ] && source "/home/dev/.bun/_bun"
 
-export HISTSIZE=100000                   # big big history
-export HISTFILESIZE=100000               # big big history
-setopt HIST_FIND_NO_DUPS
-setopt HIST_IGNORE_ALL_DUPS
-setopt appendhistory
-setopt incappendhistory
-export HISTTIMEFORMAT="[%F %T] "
-setopt SHARE_HISTORY # ZSH specific settings
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
-mkdir -p ~/.logs
-export PROMPT_COMMAND='if [[ "$(id -u)" -ne 0 ]]; then echo "$(date +%Y-%m-%d.%H:%M:%S) $(pwd) $(history |tail -n 1)" >> ~/.logs/bash-history-$(date +%Y-%m-%d).log; fi'
-# After each command, append to the history file and reread it
-export PROMPT_COMMAND="history -a; history -r; $PROMPT_COMMAND"
-# precmd() { 
-#     eval "$PROMPT_COMMAND"
-# }
+export GOROOT=/usr/local/go
+export PATH=$PATH:$GOROOT/bin
+export PATH="$PATH:$(go env GOPATH)/bin"
+set -o vi
 
+export PATH=$PATH:$HOME/bin
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-# setopt -s checkwinsize # Commented because I could not find an equivalent zsh command
+fzff() {
+  local base=${1:-$PWD}
+  find "$base" -type f -print | fzf --select-1 --exit-0
+}
+# For create worktree to work nicely on mounted folder
+export HUMANLAYER_WORKTREE_OVERRIDE_BASE=$HOME/workspace
+# To copy text to clipboard pipe to this function 
+pbcopy-nix() {
+  local input encoded
+  input=$(cat) || return
+  encoded=$(printf %s "$input" | base64 | tr -d '\n')
+  # Write the OSC 52 sequence directly to the tmux client TTY
+  printf '\e]52;c;%s\a' "$encoded" > "$(tmux display-message -p '#{client_tty}')"
+}
 
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
-#setopt -s globstar
+# choose which highlighter tool colorize uses
+export ZSH_COLORIZE_TOOL=pygmentize # or "highlight" or "rougify"
 
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+# choose the color theme used by that tool
+export ZSH_COLORIZE_STYLE=monokai # or: native, solarized-dark, murphy, etc.
+export UV_LINK_MODE=copy
+export UV_LINK_MODE=copy
 
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
-
-# When starting vim in TMUX it does not remember the colorscheme. Fix this by forcing tmux to recognize 256 colors
-# https://stackoverflow.com/questions/10158508/lose-vim-colorscheme-in-tmux-mode
-alias tmux="TERM=screen-256color-bce tmux"
-
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-#force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=no
-    fi
-fi
-
-# Support for tmux to be able to warn upon command completion.
-[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
-# precmd() {  echo -e '\a'; }
-
-# TODO: commented for zsh since I did not have time to fix it after porting it from bash
-#if [ "${color_prompt}" = yes ]; then
-#    echo "${debian_chroot}"
-#    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-#else
-#    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-#fi
-#unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-# case "$TERM" in
-# xterm*|rxvt*)
-#     PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-#     ;;
-# *)
-#     ;;
-# esac
-
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-#if ! setopt -oq posix; then
-if [ -f /usr/share/bash-completion/bash_completion ]; then
-. /usr/share/bash-completion/bash_completion
-elif [ -f /etc/bash_completion ]; then
-. /etc/bash_completion
-fi
-#fi
-
-# Integrating tmux shell
-# test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash" || true
-
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
-source ~/.zshenv
-bindkey '^R' history-incremental-search-backward
-
-# added by setup_fb4a.sh
-export ANDROID_SDK=/opt/android_sdk
-export ANDROID_NDK_REPOSITORY=/opt/android_ndk
-export ANDROID_HOME=${ANDROID_SDK}
-export PATH=${PATH}:${ANDROID_SDK}/emulator:${ANDROID_SDK}/tools:${ANDROID_SDK}/tools/bin:${ANDROID_SDK}/platform-tools
-
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+# UV cache on persistent ZFS storage (enables hardlinks, survives container rebuilds)
+export UV_CACHE_DIR=/home/dev/workspace/.uv-cache
