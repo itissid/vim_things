@@ -1,46 +1,48 @@
 set nocompatible
 filetype off
 
-call pathogen#infect()
-call pathogen#helptags()
+" Pathogen is a runtime path manager, which installs plugins into their own
+" private directories, I commented this out in favor of vim-plug
+" call pathogen#infect()
+" call pathogen#helptags()
 
-" Vundle related things
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" The vim-plug managemeent system https://github.com/junegunn/vim-plug
+call plug#begin()
 "Plugin 'tpope/vim-fugitive'
 "Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-repeat' " Revived for use outside clojure
+Plug 'tpope/vim-repeat' " Revived for use outside clojure
 "Plugin 'marijnh/tern_for_vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-surround' " Revived for use outside clojure
-Plugin 'gmarik/Vundle.vim'
+Plug 'preservim/nerdtree'
+Plug 'tpope/vim-surround' " Revived for use outside clojure
 " Plugin 'tell-k/vim-autopep8'
 " Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim'
 " Clojure related plugin
-Plugin 'tpope/vim-fireplace' " Talks to nREPL to provide code evaluation in vim
-Plugin 'tpope/vim-salve' " Auto connect fireplace to nREPL(or auto start it w/ :Console)
-Plugin 'tpope/vim-dispatch' " Mainly for kicking off liengen asynchronusly by vim-salve, but generally to leverage the power of Vim's compiler plugins without being bound by synchronicity. Kick off builds and test suites using one of several asynchronous adapters (including tmux, screen, iTerm, Windows, and a headless mode), and when the job completes, errors will be loaded and parsed automatically.
-Plugin 'kovisoft/paredit'
-Plugin 'guns/vim-clojure-static' "  Syntax stuff
-Plugin 'guns/vim-clojure-highlight' " Syntax stuff
+Plug 'tpope/vim-fireplace' " Talks to nREPL to provide code evaluation in vim
+Plug 'tpope/vim-salve' " Auto connect fireplace to nREPL(or auto start it w/ :Console)
+Plug 'tpope/vim-dispatch' " Mainly for kicking off liengen asynchronusly by vim-salve, but generally to leverage the power of Vim's compiler plugins without being bound by synchronicity. Kick off builds and test suites using one of several asynchronous adapters (including tmux, screen, iTerm, Windows, and a headless mode), and when the job completes, errors will be loaded and parsed automatically.
+Plug 'kovisoft/paredit'
+Plug 'guns/vim-clojure-static' "  Syntax stuff
+Plug 'guns/vim-clojure-highlight' " Syntax stuff
+
 " Plugin 'kien/rainbow_parentheses.vim'
 
-call plug#begin()
 
 " List your plugins here
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-call plug#end()
 
 " Plugin 'vim-scripts/vim-gradle'
 
-Plugin 'jalvesaq/Nvim-R'
-Plugin 'ssayols/screenR'
-Plugin 'maverickg/stan'
+Plug 'jalvesaq/Nvim-R'
+Plug 'ssayols/screenR'
+Plug 'maverickg/stan'
+" https://github.com/preservim/vim-markdown
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
 
-call vundle#end()            " required
+call plug#end()
 
 filetype plugin indent on
 syntax on

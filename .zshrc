@@ -74,11 +74,16 @@ ZSH_THEME="robbyrussell"
 
 antigen use oh-my-zsh
 
+# zsh-vi-mode: copy yanks to system clipboard (OSC52 via pbcopy-nix)
+ZVM_SYSTEM_CLIPBOARD_ENABLED=true
+ZVM_CLIPBOARD_COPY_CMD='pbcopy-nix'
+ZVM_CLIPBOARD_PASTE_CMD=':'
 antigen bundle jeffreytse/zsh-vi-mode
 antigen bundle zsh-users/zsh-history-substring-search
 antigen bundle colorize
 antigen bundle gh
 antigen bundle fzf
+antigen bundle git
 
 # Load syntax highlight plugin
 antigen theme robbyrussell
@@ -173,3 +178,7 @@ export UV_LINK_MODE=copy
 
 # UV cache on persistent ZFS storage (enables hardlinks, survives container rebuilds)
 export UV_CACHE_DIR=/home/dev/workspace/.uv-cache
+alias socker='sudo docker'
+
+# Auto-load .env files with uv run
+export UV_ENV_FILE=.env
