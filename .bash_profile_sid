@@ -157,3 +157,8 @@ alias treec='tree -I pgdata/ -I "*[.]pyc" -I "*[.]png" -I  "*[.]md" -I "__pycach
 [ -f /Users/sid/.dart-cli-completion/bash-config.bash ] && . /Users/sid/.dart-cli-completion/bash-config.bash || true
 ## [/Completion]
 
+export PATH="/opt/homebrew/opt/curl/bin:$PATH"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

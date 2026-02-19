@@ -5,3 +5,8 @@ tmp/*
 # Let Vundle manage things, we don't need to checkin
 # things to git!
 bundle/*
+
+.zcompdump*
+.zsh_history
+.zsh_sessions/
+.cache/
